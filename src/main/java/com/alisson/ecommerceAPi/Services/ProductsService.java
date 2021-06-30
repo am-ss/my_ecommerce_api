@@ -32,6 +32,11 @@ public class ProductsService {
         return createProduct(dBProduct);
     }
 
+    public void teste(){
+        System.out.println("teste");
+    }
+
+
     public void deleteProduct(Long id){
         repository.delete(getProductById(id));
     }
