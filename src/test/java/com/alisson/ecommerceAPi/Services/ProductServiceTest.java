@@ -29,5 +29,5 @@ public class ProductServiceTest {
         Assert.isTrue(products.size() >= 0, "The product list size is not bigger then 0");
     }
 
-    
+
 }
