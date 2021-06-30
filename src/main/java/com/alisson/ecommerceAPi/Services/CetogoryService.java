@@ -34,6 +34,10 @@ public class CetogoryService {
         return createProduct(dBCategory);
     }
 
+    public List<Category> searchCategotyByName(String name){
+        return repository.searchCategoryByName(name);
+    }
+
     public void deleteProduct(Long id){
         repository.delete(getProductById(id));
     }
