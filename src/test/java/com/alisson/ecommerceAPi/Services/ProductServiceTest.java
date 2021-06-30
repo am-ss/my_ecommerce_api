@@ -1,6 +1,7 @@
 package com.alisson.ecommerceAPi.Services;
 
 
+import com.alisson.ecommerceAPi.Models.Category;
 import com.alisson.ecommerceAPi.Models.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,6 @@ public class ProductServiceTest {
         List<Product> products = service.getAllProducts();
         Assert.isTrue(products.size() >= 0, "The product list size is not bigger then 0");
     }
+
+    
 }

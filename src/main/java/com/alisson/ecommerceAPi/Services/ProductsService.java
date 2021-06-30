@@ -26,6 +26,17 @@ public class ProductsService {
         return repository.save(product);
     }
 
+    public List<Product> getProductByCategory(int categoryId){
+        List<Product> productList = repository.getProductsByCategoty(categoryId);
+        return productList;
+    }
+
+    public List<Product> searchProductsByName(String name){
+        List<Product> productList = repository.searchProductsByName(name);
+        return productList;
+    }
+
+
     public Product updateProduct(Long id, Product product){
         Product dBProduct = getProductById(id);
         BeanUtils.copyProperties(product, dBProduct);
