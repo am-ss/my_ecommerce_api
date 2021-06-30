@@ -1,5 +1,6 @@
 package com.alisson.ecommerceAPi.Services;
 
+import com.alisson.ecommerceAPi.Inputs.ProductInput;
 import com.alisson.ecommerceAPi.Models.Product;
 import com.alisson.ecommerceAPi.Repositories.ProductsRepository;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +15,9 @@ public class ProductsService {
     @Autowired
     private ProductsRepository repository;
 
+    @Autowired
+    private CategoryService categoryService;
+
     public List<Product> getAllProducts(){
         return repository.findAll();
     }
@@ -22,8 +26,12 @@ public class ProductsService {
         return repository.getById(id);
     }
 
-    public Product createProduct (Product product){
-        return repository.save(product);
+    public Product createProduct (ProductInput product){
+        var teste = product.getCategoryId();
+        Product productResponse = new Product();
+        BeanUtils.copyProperties(product, productResponse);
+        productResponse.setCategory(categoryService.getCategoryById(product.getCategoryId()));
+        return repository.save(productResponse);
     }
 
     public List<Product> getProductByCategory(int categoryId){
@@ -37,10 +45,11 @@ public class ProductsService {
     }
 
 
-    public Product updateProduct(Long id, Product product){
+    public Product updateProduct(Long id, ProductInput product){
         Product dBProduct = getProductById(id);
-        BeanUtils.copyProperties(product, dBProduct);
-        return createProduct(dBProduct);
+        BeanUtils.copyProperties(dBProduct, product);
+        product.setId(id);
+        return createProduct(product);
     }
 
     public void deleteProduct(Long id){

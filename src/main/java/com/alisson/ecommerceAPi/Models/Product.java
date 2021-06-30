@@ -1,5 +1,6 @@
 package com.alisson.ecommerceAPi.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,4 +35,5 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="id_category")
     private Category category;
+
 }

@@ -11,35 +11,36 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CetogoryService {
+public class CategoryService {
 
     @Autowired
     private CetegoryRepository repository;
 
-    public List<Category> getAllProducts(){
+    public List<Category> getAllCategories(){
         return repository.findAll();
     }
 
-    public Category getProductById(Long id){
-        return repository.getById(id);
+    public Category getCategoryById(int id){
+
+        return repository.getById((long)id);
     }
 
-    public Category createProduct (Category category){
+    public Category createCategory (Category category){
         return repository.save(category);
     }
 
-    public Category updateProduct(Long id, Category category){
-        Category dBCategory = getProductById(id);
+    public Category updateCategory(int id, Category category){
+        Category dBCategory = getCategoryById(id);
         BeanUtils.copyProperties(category, dBCategory);
-        return createProduct(dBCategory);
+        return createCategory(dBCategory);
     }
 
     public List<Category> searchCategotyByName(String name){
         return repository.searchCategoryByName(name);
     }
 
-    public void deleteProduct(Long id){
-        repository.delete(getProductById(id));
+    public void deleteProduct(int id){
+        repository.delete(getCategoryById(id));
     }
 
 }
